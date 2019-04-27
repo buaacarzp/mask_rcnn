@@ -45,8 +45,8 @@ print("删除后的文件总数是：",len(os.listdir(file_path)))
 for index,value in enumerate(os.listdir(file_path)):
     print(index,value)
     if not os.path.exists(new_traindata):
-        os.mkdir(new_traindata)
-    os.rename(file_path+"/"+str(value),
+        os.mkdir(new_traindata)      
+    shutil.copytree(file_path+"/"+str(value),
               new_traindata+str((index+1))+str("_json"))
 '''
 对new_traindata中的1_json...中的label.png进行编号
@@ -66,7 +66,8 @@ for i in range(file_counts):
         '''
         if not os.path.exists(cv2_mask):
             os.mkdir(cv2_mask)
-        shutil.move(new_file_path_label,cv2_mask)
+        #shutil.move(new_file_path_label,cv2_mask)
+        shutil.copy(new_file_path_label,cv2_mask)
         
     else:
         pass
